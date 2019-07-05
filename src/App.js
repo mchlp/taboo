@@ -4,7 +4,9 @@ import Game from './Components/Game';
 function App() {
   return (
     <div className="App">
-      <Game />  {/* testing!*/}
+
+      <Game teamName="Thisismyteam" restricted={["abc", "def", "efg"]} word="hello"/>  {/* testing!*/}
+      
     </div>
   );
 }
