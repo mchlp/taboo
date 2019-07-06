@@ -4,13 +4,16 @@ import './Container.css';
 import './AddTeam.css';
 
 
-const renderedTeamNames = [];
+const rendered = []; //stores submitted names
+const teamNamesRendered = []; //rendered name button components
+
 class AddTeamButton extends Component{
     constructor(props){
         super(props);
 
         this.state ={
-            value: '',
+            value: '', //temporarily stores the onChange value 
+            name: '', //value of last team name that was submitted
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,31 +21,31 @@ class AddTeamButton extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        this.setState({value: event.target.value});
-        console.log(`saved ${this.state.value}`);
-        document.getElementById('input').value = '';
 
+        this.setState({name: this.state.value});
+        rendered.push(this.state.name);
+
+        //clearing the input form
+        document.getElementById('input').value = '';
     }
 
     handleChange(event){
         event.preventDefault();
-        //this.setState({value: event.target.value});
-        console.log(this.state.value);
+        this.setState({value: event.target.value});
     }
 
-
     render(){
-        
-        for(let i = 0; i < this.props.teamNames.length; i++){
-            renderedTeamNames.push(
-                <Row> 
-                    <Button>
-                        {this.props.teamNames[i]} 
-                    </Button>
+        if(!rendered.includes(this.state.name) && !(this.state.name ==='')){
+            teamNamesRendered.push(
+                <Row>
+                    <Button>{this.state.name}</Button>
                 </Row>
             );
+            rendered.push(this.state.name);
+        }else{
+            console.log('name taken, please enter a different name');
         }
-
+        
         return(
             <Container>
                 <form onSubmit={this.handleSubmit} noValidate>
@@ -62,7 +65,7 @@ class AddTeamButton extends Component{
                     </Row>
                 </form>
                 <div>
-                    {renderedTeamNames}
+                    {teamNamesRendered}
                 </div>
             </Container>
             
@@ -72,14 +75,14 @@ class AddTeamButton extends Component{
 }
 
 
-console.log(renderedTeamNames);
+console.log(rendered);
 class AddTeam extends Component{
     render(){
         return(
             <body>
                 <Container>
                     <h1 className="Title" id="TeamsText">Teams!</h1>
-                    <AddTeamButton teamNames={[]}/>
+                    <AddTeamButton/>
                     
                 </Container>
             </body>
