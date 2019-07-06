@@ -9,7 +9,7 @@ class Game extends Component{
 
     render() {
         const restWords = [];
-
+    
         //adds li components of words into "restWords"
         for (let w of this.props.restricted)
             restWords.push(<li>{w}</li>);

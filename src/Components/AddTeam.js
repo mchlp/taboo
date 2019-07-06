@@ -3,88 +3,84 @@ import { Button, Form, Row, Container, FormGroup, Col} from 'react-bootstrap';
 import './Container.css';
 import './AddTeam.css';
 
-var teamNames = [];
 
+const renderedTeamNames = [];
 class AddTeamButton extends Component{
     constructor(props){
         super(props);
 
         this.state ={
-            value: ''
+            value: '',
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    
-
-    handleClick(event){
-        
-        teamNames.push(event.target.value);
-        console.log(this.state.value);
-
-    }
-    
     handleSubmit(event){
+        event.preventDefault();
         this.setState({value: event.target.value});
+        console.log(`saved ${this.state.value}`);
+        document.getElementById('input').value = '';
 
     }
-    render(){
-        return(
-            <Container>
-                <FormGroup>
-                    <Row>
-                        <Col>
-                            <Form.Control onChange={this.handleSubmit} type="text" value={this.state.value} placeholder="Team Name">
-                            </Form.Control>
-                        </Col>
-                        <Col>
-                            <Button type="submit" onClick={this.handleClick}>Add Team</Button>
-                        </Col>
-                    </Row>
-                </FormGroup>
-            </Container>
-        );
-    } 
-}
 
-class Teams extends Component{
-    constructor(props){
-        super(props);
+    handleChange(event){
+        event.preventDefault();
+        //this.setState({value: event.target.value});
+        console.log(this.state.value);
     }
-  
+
+
     render(){
-
-        let renderedTeamNames = [];
-
-        for(let i = 0; i < teamNames.length; i++){
+        
+        for(let i = 0; i < this.props.teamNames.length; i++){
             renderedTeamNames.push(
-                <Row>
+                <Row> 
                     <Button>
-                        {teamNames[i]} 
+                        {this.props.teamNames[i]} 
                     </Button>
                 </Row>
             );
         }
+
         return(
-            <div>
-                {renderedTeamNames}
-            </div>
+            <Container>
+                <form onSubmit={this.handleSubmit} noValidate>
+                    <Row>
+                        <Col>
+                            <input onChange={this.handleChange}
+                                type="text"
+                                name="name"
+                                noValidate
+                                id="input"
+                                placeholder="Team Name">
+                            </input>
+                        </Col>
+                        <Col>
+                            <button type="submit" onClick={this.handleSubmit}>Add Team</button>
+                        </Col>
+                    </Row>
+                </form>
+                <div>
+                    {renderedTeamNames}
+                </div>
+            </Container>
+            
+
         );
-    }
+    } 
 }
 
 
+console.log(renderedTeamNames);
 class AddTeam extends Component{
     render(){
         return(
             <body>
                 <Container>
                     <h1 className="Title" id="TeamsText">Teams!</h1>
-                    <AddTeamButton />
-                    <Teams/>
+                    <AddTeamButton teamNames={[]}/>
                     
-
                 </Container>
             </body>
         );
