@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Form, Row, Container, FormGroup, Col} from 'react-bootstrap';
 import './Container.css';
 import './AddTeam.css';
+import { thisTypeAnnotation } from '@babel/types';
 
 
 const rendered = []; //stores submitted names
@@ -14,6 +15,9 @@ class AddTeamButton extends Component{
         this.state ={
             value: '', //temporarily stores the onChange value 
             name: '', //value of last team name that was submitted
+            showNoName: false,
+            showNameTaken: false
+
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,8 +26,20 @@ class AddTeamButton extends Component{
     handleSubmit(event){
         event.preventDefault();
 
-        this.setState({name: this.state.value});
-        rendered.push(this.state.name);
+        //data validation
+        if(this.state.value === ''){
+            this.setState({ showNoName : true});
+        }
+        else if(rendered.includes(this.state.value)){
+            this.setState({ showNameTaken : true});
+        }
+        else{
+            this.setState({ showNoName: false, 
+                showNameTaken: false,
+                name: this.state.value
+            });
+            
+        }
 
         //clearing the input form
         document.getElementById('input').value = '';
@@ -35,19 +51,23 @@ class AddTeamButton extends Component{
     }
 
     render(){
-        if(!rendered.includes(this.state.name) && !(this.state.name ==='')){
+        if(!rendered.includes(this.state.name) && !(this.state.name === '')){
             teamNamesRendered.push(
                 <Row>
-                    <Button>{this.state.name}</Button>
-                </Row>
+                    <Button>
+                        {this.state.name}
+                    </Button>
+                </Row> 
             );
             rendered.push(this.state.name);
-        }else{
-            console.log('name taken, please enter a different name');
         }
+        
         
         return(
             <Container>
+                <div>
+                    {teamNamesRendered}
+                </div>
                 <form onSubmit={this.handleSubmit} noValidate>
                     <Row>
                         <Col>
@@ -60,16 +80,14 @@ class AddTeamButton extends Component{
                             </input>
                         </Col>
                         <Col>
-                            <button type="submit" onClick={this.handleSubmit}>Add Team</button>
+                            <Button type="submit" onClick={this.handleSubmit}>Add Team</Button>
                         </Col>
                     </Row>
                 </form>
-                <div>
-                    {teamNamesRendered}
-                </div>
+                {this.state.showNoName ? <p className="name-error" >Please enter a name</p> : null }
+                {this.state.showNameTaken ? <p className="name-error">Name is taken. Please enter a different name.</p> : null}
             </Container>
             
-
         );
     } 
 }
