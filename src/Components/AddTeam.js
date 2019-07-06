@@ -92,17 +92,104 @@ class AddTeamButton extends Component{
     } 
 }
 
+//default settings
+const defaultTime = 45;
+const defaultPenalty = 0;
+const defaultCapPoints = 1000; 
 
-console.log(rendered);
 class AddTeam extends Component{
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            
+            time: defaultTime,
+            penalty: defaultPenalty,
+            capPoints: defaultCapPoints     
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event){
+        event.preventDefault();
+
+        const {name, value} = event.target;
+
+        switch(name){
+        case('time'):
+            this.setState({ time: value });
+            break;
+       
+        case('penalty'):
+            this.setState({penalty: value});
+            break;
+        case('capPoints'):
+            this.setState({capPoints: value});
+            break;
+        }
+        console.log(`time ${this.state.time}`);
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        
+        
+    }
     render(){
         return(
             <body>
-                <Container>
-                    <h1 className="Title" id="TeamsText">Teams!</h1>
-                    <AddTeamButton/>
+                <form>
+                    <Container>
+                        <h1 className="title" id="team-title">Teams!</h1>
+                        <AddTeamButton/>
+                        <h1 className="title" id="settings-title">Settings</h1>
+
+
+
+
+
+
+
+
+                        <Row>
+                            <Col>
+                                <h4 className="settings-subtitle">Time per Round</h4>
+                            </Col>
+                            <Col>
+                                <input className="number-input"
+                                    onChange={this.handleChange}
+                                    type="number"
+                                    name="time"
+                                    id="time"
+                                    defaultValue={defaultTime}
+                                    noValidate>
+                                </input>
+                            </Col>
+                            <Col>
+                                <h4 className="unit">seconds</h4>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <h4 className="settings-subtitle">Fail Penalty</h4>
+                            </Col>
+                        </Row> 
+
+                        <Row>
+                            <Col>
+                                <h4 className="settings-subtitle">Cap points</h4>
+                            </Col>
+                        </Row>                    
+                        <Button type="submit" onSubmit={this.handleSubmit}>Start Game</Button>
+                       
+
                     
-                </Container>
+                    </Container>
+                </form>
             </body>
         );
     }

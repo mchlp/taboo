@@ -7,7 +7,7 @@ function App() {
     const words = backend.getWord();
     return (
         <div className="App">
-            <AddTeam/>         {/* testing!*/ }
+            <AddTeam />  {/* testing!*/ }
         </div>
     );
 }
