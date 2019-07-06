@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Container, Row, Col, Button} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import './Game.css';
 
 class Game extends Component{
@@ -7,14 +7,14 @@ class Game extends Component{
         super(props); 
     }
 
-    render(){ 
+    render() {
         const restWords = [];
-        
+
         //adds li components of words into "restWords"
-        for(let w of this.props.restricted)
+        for (let w of this.props.restricted)
             restWords.push(<li>{w}</li>);
-        
-        return(
+
+        return (
             <body>
                 <Container className="wrapper">
                     <Row>
@@ -35,7 +35,7 @@ class Game extends Component{
                                 <h1>{this.props.word}</h1>
                                 <div>{restWords}</div>
                             </Col>
-                        </Row>                        
+                        </Row>
                     </Container>
                     <Row>
                         <Col>
