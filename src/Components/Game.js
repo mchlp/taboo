@@ -5,11 +5,6 @@ import './Game.css';
 class Game extends Component{
     constructor(props){
         super(props); 
-            this.state = {
-            teamName: 'Test',
-            word: 'Test',
-            restricted: []
-        };    
     }
 
     render(){ 

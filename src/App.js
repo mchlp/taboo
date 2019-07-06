@@ -6,9 +6,7 @@ function App() {
     return (
         <div className="App">
             <Game />  {/* testing!*/}
-            <div>
-                {backend.getWord().join(' ')}
-            </div>
+            
         </div>
     );
 }

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
 
 class MainMenu extends Component{
     render(){
         return(
-            <div>
-
-            </div>
+            <body>
+                <Button >
+                    play taboo!</Button>
+            </body>
         );
     }
 }

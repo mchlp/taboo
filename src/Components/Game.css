@@ -23,15 +23,3 @@ h2{
     text-align: center;
     color: white;
 }
-
-.wrapper{
-    min-height: 400px;
-    min-width: 250px;
-    max-width: 350px; 
-}
-
-.card{
-    min-height: 400px;
-    min-width: 250px;
-    max-width: 350px; 
-}
