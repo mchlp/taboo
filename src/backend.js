@@ -2,21 +2,38 @@ import wordList from './words.json';
 
 const backend = {};
 
+backend.settings = {
+    roundTime: null,
+    failPenalty: null,
+    capPoints: null,
+    numPlayers: null,
+    teamNames: [],
+    teamColours: []
+};
+
+backend.state = {
+    pass: [],
+    fail: [],
+    curTurn: null,
+    roundEndTime: null
+};
+
 /**
  * To be called to set up the game by providing game settings.
  */
-backend.startGame = (roundTime, failPenalty, capPoints) => {
+backend.startGame = (roundTime, failPenalty, capPoints, numPlayers) => {
     backend.settings = {
         roundTime,
         failPenalty,
         capPoints,
-        teamNames: ['Team 1', 'Team 2'],
-        teamColours: ['#DC143C', '	#4169E1']
+        numPlayers,
+        teamNames: [],
+        teamColours: []
     };
 
     backend.state = {
-        pass: [0, 0],
-        fail: [0, 0],
+        pass: Array(numPlayers).fill(0),
+        fail: Array(numPlayers).fill(0),
         curTurn: 0,
         roundEndTime: 0
     };
@@ -28,6 +45,13 @@ backend.startGame = (roundTime, failPenalty, capPoints) => {
 backend.setupTeams = (teamNames, teamColours) => {
     backend.settings.teamNames = teamNames;
     backend.settings.teamColours = teamColours;
+};
+
+/**
+ * Returns the number of players
+ */
+backend.getNumPlayers = () => {
+    return backend.settings.numPlayers;
 };
 
 /**
@@ -89,7 +113,10 @@ backend.failWord = () => {
  * To be called when a round is finished (time is up).
  */
 backend.endRound = () => {
-    backend.state.curTurn = backend.state.curTurn === 1 ? 0 : 1;
+    backend.state.curTurn++;
+    if (backend.state.curTurn === backend.settings.numPlayers) {
+        backend.state.curTurn = 0;
+    }
 };
 
 /**
