@@ -4,6 +4,7 @@ import './Container.css';
 import './AddTeam.css';
 import { thisTypeAnnotation } from '@babel/types';
 import backend from '../backend'; 
+import { Link } from 'react-router-dom';
 
 //AddTeam constants 
 const teamNames = []; //stores submitted names
@@ -120,7 +121,9 @@ class AddTeam extends Component{
             penaltyInvalid: false,
             capPointsInvalid: false,
 
-            teamsInvalid: true
+            teamsInvalid: true,
+
+            goToGame: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -172,7 +175,8 @@ class AddTeam extends Component{
 
             backend.startGame(settings.time, settings.penalty, settings.capPoints);
             backend.setupTeams(teamNames);
-            
+
+            this.props.history.push('/play');   
         }
     }
     render(){
@@ -206,7 +210,7 @@ class AddTeam extends Component{
                             </Col>
                         </Row>
                         <Row>
-                           { this.state.timeInvalid? <p className="error">Time is too short. Please enter a new time.</p> : null }
+                            { this.state.timeInvalid? <p className="error">Time is too short. Please enter a new time.</p> : null }
                         </Row>
 
                         <Row>
@@ -246,7 +250,11 @@ class AddTeam extends Component{
                                 <h4 className="unit">Points</h4>
                             </Col>
                         </Row>                    
-                        <Button type="submit" onClick={this.handleSubmit}>Start Game</Button>
+                        <Button type="submit" onClick={this.handleSubmit}>
+                            
+                                Start Game
+                        
+                        </Button>
                        
                     </form>
                     

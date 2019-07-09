@@ -10,7 +10,7 @@ body{
 /* word*/
 h1{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 3.75rem;
+    font-size: 3.5rem; /*font size dynamic*/
     text-align: center;
     color: var(--grey);
 }
@@ -18,8 +18,28 @@ h1{
 /* it is now team _'s turn */
 h2{
     font-family: Helvetica, Arial, sans-serif;
-    font-weight: lighter;
+    font-weight: lighter; 
     font-size: 1.5rem;
     text-align: center;
     color: white;
+    
+}
+.card{
+    min-height: 400px;
+    min-width: 250px;
+    max-width: 350px; 
+    box-shadow: 2em;
+    padding: 1em;
+}
+
+.round {
+    border-radius: 100%;
+}
+.restricted li{
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--grey);
+    font-weight: lighter;
+    font-size: 1.75em;
+    
 }

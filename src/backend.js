@@ -93,7 +93,7 @@ backend.startRound = () => {
 /**
  * To be called when a word is passed. The function will return a boolean, stating whether the current player has won (true if player has won, false if game should continue).
  */
-backend.passWord = () => {
+backend.score = () => {
     backend.state.pass[backend.state.curTurn]++;
     const scores = backend.getScores;
     if (scores[0] >= backend.settings.capPoints || scores[1] >= backend.settings.capPoints) {
