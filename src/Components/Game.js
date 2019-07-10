@@ -48,9 +48,8 @@ class Game extends Component{
 
     }
 
-
-
     render() {
+        console.log(backend.getTeamNames[backend.getCurrentTeam]);
         const restWords = [];
     
         //adds li components of words into "restWords"
@@ -61,13 +60,13 @@ class Game extends Component{
             <body>
                 <Container className="wrapper">
                     <Row>
-                        <h1>time</h1> {/*"add time"*/};
+                        <h1>time</h1> {/*"add time"*/}
                     </Row>
                     <Row>
                         <Button><Link to="/score">End game</Link></Button>
                     </Row>
                     <Row>
-                        <h2>It is team {backend.getTeamNames[backend.getCurrentTeam]}'s turn</h2>
+                        <h2>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
                     </Row>
 
                     <Container className="card">

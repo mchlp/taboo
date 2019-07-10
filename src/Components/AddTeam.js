@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import { Button, Form, Row, Container, FormGroup, Col} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button, Form, Row, Container, FormGroup, Col } from 'react-bootstrap';
 import './Container.css';
 import './AddTeam.css';
 import { thisTypeAnnotation } from '@babel/types';
-import backend from '../backend'; 
+import backend from '../backend';
 import { Link } from 'react-router-dom';
 
 //AddTeam constants 
@@ -15,15 +15,15 @@ const teamNamesRendered = []; //rendered name button components
 //default settings
 const defaultTime = 45;
 const defaultPenalty = 0;
-const defaultCapPoints = 1000; 
+const defaultCapPoints = 1000;
 
 const settings = { time: defaultTime, penalty: defaultPenalty, capPoints: defaultCapPoints };
 
-class AddTeamButton extends Component{
-    constructor(props){
+class AddTeamButton extends Component {
+    constructor(props) {
         super(props);
 
-        this.state ={
+        this.state = {
             value: '', //temporarily stores the onChange value 
             name: '', //value of last team name that was submitted
             showNoName: false,
@@ -34,47 +34,48 @@ class AddTeamButton extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
 
         //data validation
-        if(this.state.value === ''){
-            this.setState({ showNoName : true});
+        if (this.state.value === '') {
+            this.setState({ showNoName: true });
         }
-        else if(teamNames.includes(this.state.value)){
-            this.setState({ showNameTaken : true});
+        else if (teamNames.includes(this.state.value)) {
+            this.setState({ showNameTaken: true });
         }
-        else{
-            this.setState({ showNoName: false, 
+        else {
+            this.setState({
+                showNoName: false,
                 showNameTaken: false,
                 name: this.state.value
             });
-            
+
         }
 
         //clearing the input form
         document.getElementById('input').value = '';
     }
 
-    handleChange(event){
+    handleChange(event) {
         event.preventDefault();
-        this.setState({value: event.target.value});
+        this.setState({ value: event.target.value });
     }
 
-    render(){
-        if(!teamNames.includes(this.state.name) && !(this.state.name === '')){
+    render() {
+        if (!teamNames.includes(this.state.name) && !(this.state.name === '')) {
             teamNamesRendered.push(
-                <Row>
-                    <Button>
+                <Row key={this.state.name}>
+                    <Button >
                         {this.state.name}
                     </Button>
-                </Row> 
+                </Row>
             );
             teamNames.push(this.state.name);
         }
-        
-        
-        return(
+
+
+        return (
             <Container>
                 <div>
                     {teamNamesRendered}
@@ -95,24 +96,24 @@ class AddTeamButton extends Component{
                         </Col>
                     </Row>
                 </form>
-                {this.state.showNoName ? <p className="error" >Please enter a name</p> : null }
+                {this.state.showNoName ? <p className="error" >Please enter a name</p> : null}
                 {this.state.showNameTaken ? <p className="error">Name is taken. Please enter a different name.</p> : null}
-                { this.state.teamsInvalid ? <p className="error">Please add more teams.</p> : null }
+                {this.state.teamsInvalid ? <p className="error">Please add more teams.</p> : null}
             </Container>
-            
+
         );
-    } 
+    }
 }
 
 
 
-class AddTeam extends Component{
+class AddTeam extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
-            
+
             time: defaultTime,
             penalty: defaultPenalty,
             capPoints: defaultCapPoints,
@@ -130,45 +131,45 @@ class AddTeam extends Component{
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event){
+    handleChange(event) {
         event.preventDefault();
 
-        const {name, value} = event.target;
+        const { name, value } = event.target;
 
-        switch(name){
-        case('time'):
+        switch (name) {
+        case ('time'):
             this.setState({ time: value });
             break;
-       
-        case('penalty'):
-            this.setState({penalty: value});
+
+        case ('penalty'):
+            this.setState({ penalty: value });
             break;
-        case('capPoints'):
-            this.setState({capPoints: value});
+        case ('capPoints'):
+            this.setState({ capPoints: value });
             break;
         }
         console.log(`time ${this.state.time}`);
     }
 
-    handleSubmit(event){
-        
+    handleSubmit(event) {
+
         event.preventDefault();
         console.log('handling submit');
-        
-        if(this.state.time < 5) this.setState({timeInvalid: true});
-        else this.setState( {timeInvalid: false});
-        
-        if(this.state.penalty < 0) this.setState( {penaltyInvalid: true} );
-        else this.setState( {penaltyInvalid: false});
 
-        if(this.state.capPoints < 1) this.setState({capPointsInvalid : true});
-        else this.setState( {capPointsInvalid: false});
+        if (this.state.time < 5) this.setState({ timeInvalid: true });
+        else this.setState({ timeInvalid: false });
 
-        if(teamNames.length < 2) this.setState({ teamsInvalid: true });
-        else this.setState( { teamsInvalid: false});
+        if (this.state.penalty < 0) this.setState({ penaltyInvalid: true });
+        else this.setState({ penaltyInvalid: false });
 
-        if(!this.state.timeInvalid && !this.state.penaltyInvalid 
-            && !this.state.capPointsInvalid && !this.state.teamsInvalid){
+        if (this.state.capPoints < 1) this.setState({ capPointsInvalid: true });
+        else this.setState({ capPointsInvalid: false });
+
+        if (teamNames.length < 2) this.setState({ teamsInvalid: true });
+        else this.setState({ teamsInvalid: false });
+
+        if (!this.state.timeInvalid && !this.state.penaltyInvalid
+            && !this.state.capPointsInvalid && !this.state.teamsInvalid) {
             settings.time = this.state.time;
             settings.penalty = this.state.penalty;
             settings.capPoints = this.state.capPoints;
@@ -176,90 +177,85 @@ class AddTeam extends Component{
             backend.startGame(settings.time, settings.penalty, settings.capPoints);
             backend.setupTeams(teamNames);
 
-            this.props.history.push('/play');   
+            this.props.history.push('/play');
         }
+
+        console.log(this.state);
     }
-    render(){
-        return(
-            <body>
-                
-                <Container>
-                    <h1 className="title" id="team-title">Teams!</h1>
-                    <AddTeamButton/>
-                    
-                    <h1 className="title" id="settings-title">Settings</h1>
+    render() {
+        return (
+            <Container>
+                <h1 className="title" id="team-title">Teams!</h1>
+                <AddTeamButton />
 
-                    <form>
+                <h1 className="title" id="settings-title">Settings</h1>
 
-                        <Row>
-                            <Col>
-                                <h4 className="settings-subtitle">Time per Round</h4>
-                            </Col>
-                            <Col>
-                                <input className="number-input"
-                                    onChange={this.handleChange}
-                                    type="number"
-                                    name="time"
-                                    id="time"
-                                    defaultValue={defaultTime}
-                                    noValidate>
-                                </input>
-                            </Col>
-                            <Col>
-                                <h4 className="unit">Seconds</h4>
-                            </Col>
-                        </Row>
-                        <Row>
-                            { this.state.timeInvalid? <p className="error">Time is too short. Please enter a new time.</p> : null }
-                        </Row>
+                <form onSubmit={this.handleSubmit}>
+                    <Row>
+                        <Col>
+                            <h4 className="settings-subtitle">Time per Round</h4>
+                        </Col>
+                        <Col>
+                            <input className="number-input"
+                                onChange={this.handleChange}
+                                type="number"
+                                name="time"
+                                id="time"
+                                defaultValue={defaultTime}
+                                noValidate>
+                            </input>
+                        </Col>
+                        <Col>
+                            <h4 className="unit">Seconds</h4>
+                        </Col>
+                    </Row>
+                    <Row>
+                        {this.state.timeInvalid ? <p className="error">Time is too short. Please enter a new time.</p> : null}
+                    </Row>
 
-                        <Row>
-                            <Col>
-                                <h4 className="settings-subtitle">Fail Penalty</h4>
-                            </Col>
-                            <Col>
-                                <input className="number-input"
-                                    onChange={this.handleChange}
-                                    type="number"
-                                    name="penalty"
-                                    id="penalty"
-                                    defaultValue={defaultPenalty}
-                                    noValidate>
-                                </input>
-                            </Col>
-                            <Col>
-                                <h4 className="unit">Points</h4>
-                            </Col>
-                        </Row> 
+                    <Row>
+                        <Col>
+                            <h4 className="settings-subtitle">Fail Penalty</h4>
+                        </Col>
+                        <Col>
+                            <input className="number-input"
+                                onChange={this.handleChange}
+                                type="number"
+                                name="penalty"
+                                id="penalty"
+                                defaultValue={defaultPenalty}
+                                noValidate>
+                            </input>
+                        </Col>
+                        <Col>
+                            <h4 className="unit">Points</h4>
+                        </Col>
+                    </Row>
 
-                        <Row>
-                            <Col>
-                                <h4 className="settings-subtitle">Cap points</h4>
-                            </Col>
-                            <Col>
-                                <input className="number-input"
-                                    onChange={this.handleChange}
-                                    type="number"
-                                    name="capPoints"
-                                    id="capPoints"
-                                    defaultValue={defaultCapPoints}
-                                    noValidate>
-                                </input>
-                            </Col>
-                            <Col>
-                                <h4 className="unit">Points</h4>
-                            </Col>
-                        </Row>                    
-                        <Button type="submit" onClick={this.handleSubmit}>
-                            
-                                Start Game
-                        
-                        </Button>
-                       
-                    </form>
-                    
-                </Container>
-            </body>
+                    <Row>
+                        <Col>
+                            <h4 className="settings-subtitle">Cap points</h4>
+                        </Col>
+                        <Col>
+                            <input className="number-input"
+                                onChange={this.handleChange}
+                                type="number"
+                                name="capPoints"
+                                id="capPoints"
+                                defaultValue={defaultCapPoints}
+                                noValidate>
+                            </input>
+                        </Col>
+                        <Col>
+                            <h4 className="unit">Points</h4>
+                        </Col>
+                    </Row>
+                    <Button type="submit">
+                        Start Game
+                    </Button>
+                </form>
+
+            </Container>
         );
     }
 }
