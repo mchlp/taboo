@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import './Game.css';
 import backend from '../backend';
 
+//assets 
+import CheckMark from '../Assets/Icons/checkmark.png';
+import Arrow from '../Assets/Icons/arrow.png';
+
 class Game extends Component{
     constructor(props){
         super(props); 
@@ -74,12 +78,12 @@ class Game extends Component{
                             </Col>
                         </Row>
                     </Container>
-                    <Row>
+                    <Row className="round-buttons">
                         <Col>
-                            <Button className="round" onClick={this.handleFail}>Skip</Button>
+                            <Button className="round" onClick={this.handleFail}><img src={Arrow}/></Button>
                         </Col>
                         <Col>
-                            <Button className="round" onClick={this.handleScore}>Score!</Button>
+                            <Button className="round" onClick={this.handleScore}><img src={CheckMark} style={{alignSelf:'left' }}/></Button>
                         </Col>
                     </Row>
                 </Container>
