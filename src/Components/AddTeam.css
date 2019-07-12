@@ -1,15 +1,44 @@
 .settings-subtitle{
-
+    color: white;
 }
 
 .number-input{
-    
+  -webkit-appearance: none; 
 }
 
+.unit{
+    color: white;
+}
+.settings-button{
+    background-color: turquoise; 
+    border: none;
+    border-radius: 10px;
+    color: gray;
+
+}
+
+.settings-button:hover{
+    background-color: darkturquoise; 
+}
 
 
 
 #team-title{
     color: white;
+    padding: 2rem 1rem 1rem 1rem;
+    font-size: 2rem; 
+    align-self: center;
 }
 
+#settings-title{
+    color: white;
+    padding: 2rem 1rem 1rem 1rem; 
+}
+
+#addteam-container{
+    margin-top: 2rem;
+}
+
+#submit-button{
+    margin: 1rem; 
+}

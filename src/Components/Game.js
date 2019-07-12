@@ -8,9 +8,9 @@ import backend from '../backend';
 import CheckMark from '../Assets/Icons/checkmark.png';
 import Arrow from '../Assets/Icons/arrow.png';
 
-class Game extends Component{
-    constructor(props){
-        super(props); 
+class Game extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
             word: '',
             restricted: []
@@ -21,25 +21,28 @@ class Game extends Component{
         this.handleClick = this.handleClick.bind(this);
 
     }
-    
-    handleClick(){
+
+    handleClick() {
         const wordData = backend.getWord();
         this.setState({
             word: wordData[0],
             restricted: wordData.slice(1)
         });
     }
-    handleScore(){
+    handleScore() {
         backend.score();
         this.handleClick();
     }
 
-    handleFail(){
+    handleFail() {
         backend.failWord();
         this.handleClick();
     }
 
     componentDidMount() {
+        if (backend.getTeamNames().length == 0) {
+            this.props.history.push('/teams');
+        }
         const wordData = backend.getWord();
         this.setState({
             word: wordData[0],
@@ -51,7 +54,7 @@ class Game extends Component{
     render() {
         console.log(backend.getTeamNames[backend.getCurrentTeam]);
         const restWords = [];
-    
+
         //adds li components of words into "restWords"
         for (let w of this.state.restricted)
             restWords.push(<li>{w}</li>);
@@ -79,10 +82,10 @@ class Game extends Component{
                     </Container>
                     <Row className="round-buttons">
                         <Col>
-                            <Button className="round" onClick={this.handleFail}><img src={Arrow}/></Button>
+                            <Button className="round" onClick={this.handleFail}><img src={Arrow} /></Button>
                         </Col>
                         <Col>
-                            <Button className="round" onClick={this.handleScore}><img src={CheckMark} style={{alignSelf:'left' }}/></Button>
+                            <Button className="round float-right" onClick={this.handleScore}><img src={CheckMark} style={{ alignSelf: 'right' }} /></Button>
                         </Col>
                     </Row>
                 </Container>

@@ -4,7 +4,7 @@
 
 /*background*/
 body{
-    background-color: var(--grey);
+    background-color: gray;
 }
 
 /* word*/
@@ -32,26 +32,23 @@ h2{
     padding: 1em;
 }
 
-.round-buttons .col{
-   align-items: center;
-   justify-content: center;
-}
 
 .round {
     border-radius: 50%;
     padding: 15px; 
     margin-top: 25%; 
-  
+    
 }
 
 .round img{
     width: 50px;
+    align-self: center;
 }
 
 .restricted li{
     text-align: center;
     font-family: Helvetica, Arial, sans-serif;
-    color: var(--grey);
+    color: gray;
     font-weight: lighter;
     font-size: 1.75em;
     list-style-type: none;

@@ -39,16 +39,17 @@ class AddTeamButton extends Component {
 
         //data validation
         if (this.state.value === '') {
-            this.setState({ showNoName: true });
+            this.setState({ showNoName: true, showNameTaken: false });
         }
         else if (teamNames.includes(this.state.value)) {
-            this.setState({ showNameTaken: true });
+            this.setState({ showNameTaken: true, showNoName: false });
         }
         else {
             this.setState({
                 showNoName: false,
                 showNameTaken: false,
-                name: this.state.value
+                name: this.state.value,
+                value: ''
             });
 
         }
@@ -80,22 +81,22 @@ class AddTeamButton extends Component {
                 <div>
                     {teamNamesRendered}
                 </div>
-                <form onSubmit={this.handleSubmit} noValidate>
-                    <Row>
-                        <Col>
-                            <input onChange={this.handleChange}
+                <Form onSubmit={this.handleSubmit} noValidate>
+                    <Row className='holder'>
+                        <Col xs={8} sm={8}>
+                            <Form.Control onChange={this.handleChange}
                                 type="text"
                                 name="name"
                                 noValidate
                                 id="input"
                                 placeholder="Team Name">
-                            </input>
+                            </Form.Control>
                         </Col>
-                        <Col>
-                            <Button type="submit" onClick={this.handleSubmit}>Add Team</Button>
+                        <Col xs={4} sm={4}>
+                            <Button className='settings-button' type="submit" onClick={this.handleSubmit}>Add Team</Button>
                         </Col>
                     </Row>
-                </form>
+                </Form>
                 {this.state.showNoName ? <p className="error" >Please enter a name</p> : null}
                 {this.state.showNameTaken ? <p className="error">Name is taken. Please enter a different name.</p> : null}
                 {this.state.teamsInvalid ? <p className="error">Please add more teams.</p> : null}
@@ -184,28 +185,27 @@ class AddTeam extends Component {
     }
     render() {
         return (
-            <Container>
-                <h1 className="title" id="team-title">Teams!</h1>
-                <AddTeamButton />
+            <Container className="wrapper">
+                
 
                 <h1 className="title" id="settings-title">Settings</h1>
 
                 <form onSubmit={this.handleSubmit}>
                     <Row>
-                        <Col>
+                        <Col xs={5} sm={5}>
                             <h4 className="settings-subtitle">Time per Round</h4>
                         </Col>
-                        <Col>
-                            <input className="number-input"
+                        <Col xs={3} sm={3}>
+                            <Form.Control className="number-input"
                                 onChange={this.handleChange}
                                 type="number"
                                 name="time"
                                 id="time"
                                 defaultValue={defaultTime}
                                 noValidate>
-                            </input>
+                            </Form.Control>
                         </Col>
-                        <Col>
+                        <Col xs={4} sm={4}>
                             <h4 className="unit">Seconds</h4>
                         </Col>
                     </Row>
@@ -214,47 +214,50 @@ class AddTeam extends Component {
                     </Row>
 
                     <Row>
-                        <Col>
+                        <Col xs={5} sm={5}>
                             <h4 className="settings-subtitle">Fail Penalty</h4>
                         </Col>
-                        <Col>
-                            <input className="number-input"
+                        <Col xs={3} sm={3}>
+                            <Form.Control className="number-input"
                                 onChange={this.handleChange}
                                 type="number"
                                 name="penalty"
                                 id="penalty"
                                 defaultValue={defaultPenalty}
                                 noValidate>
-                            </input>
+                            </Form.Control>
                         </Col>
-                        <Col>
+                        <Col xs={4} sm={4}>
                             <h4 className="unit">Points</h4>
                         </Col>
                     </Row>
 
                     <Row>
-                        <Col>
+                        <Col xs={5} sm={5}>
                             <h4 className="settings-subtitle">Cap points</h4>
                         </Col>
-                        <Col>
-                            <input className="number-input"
+                        <Col xs={3} sm={3}>
+                            <Form.Control className="number-input"
                                 onChange={this.handleChange}
                                 type="number"
                                 name="capPoints"
                                 id="capPoints"
                                 defaultValue={defaultCapPoints}
                                 noValidate>
-                            </input>
+                            </Form.Control>
                         </Col>
-                        <Col>
+                        <Col xs={4} sm={4}>
                             <h4 className="unit">Points</h4>
                         </Col>
                     </Row>
-                    <Button type="submit">
+                    <Button className='settings-button float-right' id='submit-button' type="submit">
                         Start Game
                     </Button>
                 </form>
-
+                <Container id='addteam-container'>
+                    <h1 className="title" id="team-title">Teams!</h1>
+                    <AddTeamButton />
+                </Container>
             </Container>
         );
     }
