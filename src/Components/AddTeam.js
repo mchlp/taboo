@@ -32,6 +32,7 @@ class AddTeamButton extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDeleteTeam = this.handleDeleteTeam.bind(this);
     }
 
     handleSubmit(event) {
@@ -63,13 +64,18 @@ class AddTeamButton extends Component {
         this.setState({ value: event.target.value });
     }
 
+    handleDeleteTeam(event){
+        console.log(event);
+    }
+
     render() {
         if (!teamNames.includes(this.state.name) && !(this.state.name === '')) {
             teamNamesRendered.push(
-                <Row key={this.state.name}>
-                    <Button >
+                <Row className='holder justiy-content-md-center' 
+                    onClick={this.handleDeleteTeam}>
+                    <h4 className='scoreboard-text'>
                         {this.state.name}
-                    </Button>
+                    </h4>
                 </Row>
             );
             teamNames.push(this.state.name);
@@ -122,8 +128,7 @@ class AddTeam extends Component {
             timeInvalid: false,
             penaltyInvalid: false,
             capPointsInvalid: false,
-
-            teamsInvalid: true,
+            teamsInvalid: false,
 
             goToGame: false
         };

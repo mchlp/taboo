@@ -14,4 +14,16 @@
     border-radius: 25rem;
     background-color: white;
     padding: 30px 20px;
+    min-width: 10rem;
+    max-width: 30rem;
+    text-align: center;
+    margin: .5rem 0;
+    
+}
+
+.scoreboard-text{
+    margin: 0 auto;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 35;
+    font-weight: lighter;
 }
