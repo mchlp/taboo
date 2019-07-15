@@ -9,19 +9,6 @@
 .unit{
     color: white;
 }
-.settings-button{
-    background-color: turquoise; 
-    border: none;
-    border-radius: 10px;
-    color: gray;
-
-}
-
-.settings-button:hover{
-    background-color: darkturquoise; 
-}
-
-
 
 #team-title{
     color: white;
@@ -32,7 +19,12 @@
 
 #settings-title{
     color: white;
-    padding: 2rem 1rem 1rem 1rem; 
+    padding: 3rem 1rem 2rem 1rem; 
+}
+
+#input{
+    background-color: lightgray;
+
 }
 
 #addteam-container{
@@ -40,5 +32,7 @@
 }
 
 #submit-button{
-   
+    display: block;
+    margin: 1.5rem auto;
+    text-align: center;
 }

@@ -53,3 +53,7 @@ h2{
     font-size: 1.75em;
     list-style-type: none;
 }
+
+#end-game-button{
+    margin: auto;
+}

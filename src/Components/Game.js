@@ -66,7 +66,7 @@ class Game extends Component {
                         <h1>time</h1> {/*"add time"*/}
                     </Row>
                     <Row>
-                        <Button><Link to="/score">End game</Link></Button>
+                        <Button id='end-game-button'><Link to="/score">End game</Link></Button>
                     </Row>
                     <Row>
                         <h2>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
@@ -82,10 +82,10 @@ class Game extends Component {
                     </Container>
                     <Row className="round-buttons">
                         <Col>
-                            <Button className="round" onClick={this.handleFail}><img src={Arrow} /></Button>
+                            <Button variant='warning' className="round float-right" onClick={this.handleFail}><img src={Arrow} /></Button>
                         </Col>
                         <Col>
-                            <Button className="round float-right" onClick={this.handleScore}><img src={CheckMark} style={{ alignSelf: 'right' }} /></Button>
+                            <Button variant='success' className="round float-left" onClick={this.handleScore}><img src={CheckMark} /></Button>
                         </Col>
                     </Row>
                 </Container>

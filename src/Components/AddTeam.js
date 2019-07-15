@@ -99,7 +99,7 @@ class AddTeamButton extends Component {
                             </Form.Control>
                         </Col>
                         <Col xs={4} sm={4}>
-                            <Button className='settings-button' type="submit" onClick={this.handleSubmit}>Add Team</Button>
+                            <Button className='turquoise-button' type="submit" onClick={this.handleSubmit}>Add Team</Button>
                         </Col>
                     </Row>
                 </Form>
@@ -255,14 +255,18 @@ class AddTeam extends Component {
                             <h4 className="unit">Points</h4>
                         </Col>
                     </Row>
-                    <Button className='settings-button float-right' id='submit-button' type="submit">
+                    
+                
+                    <Container id='addteam-container'>
+                        <h1 className="title" id="team-title">Teams!</h1>
+                        <AddTeamButton />
+                    </Container>
+
+                    <Button className='turquoise-button' id='submit-button' type="submit">
                         Start Game
                     </Button>
+               
                 </form>
-                <Container id='addteam-container'>
-                    <h1 className="title" id="team-title">Teams!</h1>
-                    <AddTeamButton />
-                </Container>
             </Container>
         );
     }

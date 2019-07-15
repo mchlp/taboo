@@ -6,11 +6,13 @@ class MainMenu extends Component{
     render(){
         return(
             <body>
-                <Button >
-                    <Link to="/teams">
+                <Link to="/teams">
+                    <Button >
+                    
                     play taboo!
-                    </Link>
-                </Button>
+                    
+                    </Button>
+                </Link>
             </body>
         );
     }
