@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/taboo/static/css/main.e3b6e47c.chunk.css",
-    "main.js": "/taboo/static/js/main.32b05a3e.chunk.js",
-    "main.js.map": "/taboo/static/js/main.32b05a3e.chunk.js.map",
+    "main.js": "/taboo/static/js/main.cb54ca2f.chunk.js",
+    "main.js.map": "/taboo/static/js/main.cb54ca2f.chunk.js.map",
     "runtime~main.js": "/taboo/static/js/runtime~main.1986a4de.js",
     "runtime~main.js.map": "/taboo/static/js/runtime~main.1986a4de.js.map",
     "static/js/2.32827277.chunk.js": "/taboo/static/js/2.32827277.chunk.js",
     "static/js/2.32827277.chunk.js.map": "/taboo/static/js/2.32827277.chunk.js.map",
     "index.html": "/taboo/index.html",
-    "precache-manifest.aa734afc260e1ca15b5a4161dc47cfa7.js": "/taboo/precache-manifest.aa734afc260e1ca15b5a4161dc47cfa7.js",
+    "precache-manifest.61a7ddb37879d965b887c812c8cbf099.js": "/taboo/precache-manifest.61a7ddb37879d965b887c812c8cbf099.js",
     "service-worker.js": "/taboo/service-worker.js",
     "static/css/main.e3b6e47c.chunk.css.map": "/taboo/static/css/main.e3b6e47c.chunk.css.map"
   }
