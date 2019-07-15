@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "42887eb92ee666a37f9b6d8416b9b46b",
+    "revision": "9bd808a1462592487045e9bf437dee07",
     "url": "/taboo/index.html"
   },
   {
