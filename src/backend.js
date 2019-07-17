@@ -6,7 +6,7 @@ backend.settings = {
     roundTime: null,
     failPenalty: null,
     capPoints: null,
-    numPlayers: null,
+    numPlayers: 0,
     teamNames: [],
     teamColours: []
 };
@@ -69,10 +69,21 @@ backend.getTeamColours = () => {
 };
 
 /**
+ * Returns the number of capPoints set.
+ */
+backend.getCapPoints = () => {
+    return backend.settings.capPoints;
+};
+
+/**
  * Returns an array of the scores of the teams.
  */
 backend.getScores = () => {
-    return [backend.state.pass[0] - (backend.state.fail[0] * backend.settings.failPenalty), backend.state.pass[1] - (backend.state.fail[1] * backend.settings.failPenalty)];
+    const res = [];
+    for (let i = 0; i < backend.getNumPlayers(); i++) {
+        res.push(backend.state.pass[i] - (backend.state.fail[i] * backend.settings.failPenalty));
+    }
+    return res;
 };
 
 /**
@@ -95,9 +106,11 @@ backend.startRound = () => {
  */
 backend.score = () => {
     backend.state.pass[backend.state.curTurn]++;
-    const scores = backend.getScores;
-    if (scores[0] >= backend.settings.capPoints || scores[1] >= backend.settings.capPoints) {
-        return true;
+    const scores = backend.getScores();
+    for (const score of scores) {
+        if (score >= backend.settings.capPoints) {
+            return true;
+        }
     }
     return false;
 };

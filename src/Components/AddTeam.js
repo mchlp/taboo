@@ -64,14 +64,14 @@ class AddTeamButton extends Component {
         this.setState({ value: event.target.value });
     }
 
-    handleDeleteTeam(event){
+    handleDeleteTeam(event) {
         console.log(event);
     }
 
     render() {
         if (!teamNames.includes(this.state.name) && !(this.state.name === '')) {
             teamNamesRendered.push(
-                <Row className='holder justiy-content-md-center' 
+                <Row className='holder justiy-content-md-center'
                     onClick={this.handleDeleteTeam}>
                     <h4 className='scoreboard-text'>
                         {this.state.name}
@@ -180,10 +180,10 @@ class AddTeam extends Component {
             settings.penalty = this.state.penalty;
             settings.capPoints = this.state.capPoints;
 
-            backend.startGame(settings.time, settings.penalty, settings.capPoints);
+            backend.startGame(settings.time, settings.penalty, settings.capPoints, teamNames.length);
             backend.setupTeams(teamNames);
 
-            this.props.history.push('/play');
+            this.props.history.push('/ready');
         }
 
         console.log(this.state);
@@ -191,7 +191,7 @@ class AddTeam extends Component {
     render() {
         return (
             <Container className="wrapper">
-                
+
 
                 <h1 className="title" id="settings-title">Settings</h1>
 
@@ -255,8 +255,8 @@ class AddTeam extends Component {
                             <h4 className="unit">Points</h4>
                         </Col>
                     </Row>
-                    
-                
+
+
                     <Container id='addteam-container'>
                         <h1 className="title" id="team-title">Teams!</h1>
                         <AddTeamButton />
@@ -265,7 +265,7 @@ class AddTeam extends Component {
                     <Button className='turquoise-button' id='submit-button' type="submit">
                         Start Game
                     </Button>
-               
+
                 </form>
             </Container>
         );

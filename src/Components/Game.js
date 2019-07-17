@@ -13,13 +13,14 @@ class Game extends Component {
         super(props);
         this.state = {
             word: '',
-            restricted: []
+            restricted: [],
+            roundEndTime: null,
+            timeLeft: 0
 
         };
         this.handleScore = this.handleScore.bind(this);
         this.handleFail = this.handleFail.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
     }
 
     handleClick() {
@@ -30,7 +31,11 @@ class Game extends Component {
         });
     }
     handleScore() {
-        backend.score();
+        const wonGame = backend.score();
+        if (wonGame) {
+            clearInterval(this.state.updateInterval);
+            this.props.history.push('/score');
+        }
         this.handleClick();
     }
 
@@ -40,33 +45,51 @@ class Game extends Component {
     }
 
     componentDidMount() {
-        if (backend.getTeamNames().length == 0) {
+
+        console.log(backend.getTeamNames());
+
+        if (backend.getNumPlayers() === 0) {
             this.props.history.push('/teams');
         }
         const wordData = backend.getWord();
+        const endTime = backend.startRound();
+
         this.setState({
             word: wordData[0],
-            restricted: wordData.slice(1)
-        });
+            restricted: wordData.slice(1),
+            roundEndTime: endTime
+        }, () => {
+            const updateInterval = setInterval(() => {
+                const timeLeft = Math.ceil((this.state.roundEndTime - Date.now()) / 1000);
+                this.setState({
+                    timeLeft,
+                    updateInterval
+                });
 
+                if (timeLeft <= 0) {
+                    clearInterval(updateInterval);
+                    backend.endRound();
+                    this.props.history.push('/ready');
+                }
+            }, 250);
+        });
     }
 
     render() {
-        console.log(backend.getTeamNames[backend.getCurrentTeam]);
         const restWords = [];
 
         //adds li components of words into "restWords"
         for (let w of this.state.restricted)
-            restWords.push(<li>{w}</li>);
+            restWords.push(<li key={w}>{w}</li>);
 
         return (
             <body>
                 <Container className="wrapper">
                     <Row>
-                        <h1>time</h1> {/*"add time"*/}
+                        <h1>time left: {this.state.timeLeft}</h1>
                     </Row>
                     <Row>
-                        <Button id='end-game-button'><Link to="/score">End game</Link></Button>
+                        <Button onClick={() => { this.props.history.push('/score'); }}>End game</Button>
                     </Row>
                     <Row>
                         <h2>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
@@ -89,7 +112,7 @@ class Game extends Component {
                         </Col>
                     </Row>
                 </Container>
-            </body>
+            </body >
         );
     }
 }
