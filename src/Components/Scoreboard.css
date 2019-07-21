@@ -1,0 +1,55 @@
+#scoreboard-container {
+    margin-top: 10vh;
+    align-content: center;
+}
+
+#start-round-title {
+    color: white;
+    text-align: center;
+    font-weight: 200;
+}
+
+#team-turn-text {
+    color: orange;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#scoreboard-title {
+    color: white;
+}
+
+#cap-points-text {
+    color: white;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+#column-header-text {
+    color: turquoise;
+}
+
+#rank-text {
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+#ready-button {
+    display: block;
+    text-align: center;
+    margin: 1.5rem auto;
+}
+
+
+
+
+
+
+
+
+

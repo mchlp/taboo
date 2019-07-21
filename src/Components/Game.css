@@ -7,23 +7,6 @@ body{
     background-color: gray;
 }
 
-/* word*/
-h1{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 3.5rem; /*font size dynamic*/
-    text-align: center;
-    color: var(--grey);
-}
-
-/* it is now team _'s turn */
-h2{
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: lighter; 
-    font-size: 1.5rem;
-    text-align: center;
-    color: white;
-    
-}
 .card{
     min-height: 400px;
     min-width: 250px;
