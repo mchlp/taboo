@@ -4,7 +4,8 @@
   "icons": [
     {
       "src": "taboo-favicon.png",
-      "type": "image/x-icon"
+      "type": "image/png",
+      "sizes": "1090x1090"
     }
   ],
   "start_url": ".",
