@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c332b32b88323c538afd5d221409a65e",
+    "revision": "bdd0f22daccf258a489be1c2fb419c47",
     "url": "/taboo/index.html"
   },
   {
-    "revision": "e4010924e0e981382b6f",
+    "revision": "bfb68e93b425ade06086",
     "url": "/taboo/static/css/main.8c895ea2.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/taboo/static/js/2.abcb41bf.chunk.js"
   },
   {
-    "revision": "e4010924e0e981382b6f",
-    "url": "/taboo/static/js/main.bbde2fa3.chunk.js"
+    "revision": "bfb68e93b425ade06086",
+    "url": "/taboo/static/js/main.0bbf3523.chunk.js"
   },
   {
     "revision": "137b8f7f66a769bd79b5",
