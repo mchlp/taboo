@@ -5,6 +5,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import './Container.css';
 import './Scoreboard.css';
 
+
 class Scoreboard extends Component {
     render() {
 
@@ -13,10 +14,9 @@ class Scoreboard extends Component {
         }
 
         const capPoints = backend.getCapPoints();
-        let winningTeam = '';
+        let winningTeam = ''; 
         let winningScore = 0;
         let teamWon = false;
-
         const teamData = [];
         console.log(backend.getNumPlayers());
         for (let i = 0; i < backend.getNumPlayers(); i++) {

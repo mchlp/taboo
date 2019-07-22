@@ -13,10 +13,12 @@
     color: orange;
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 0;
 }
 
 #scoreboard-title {
     color: white;
+    margin-top: .5rem;
 }
 
 #cap-points-text {
