@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import './Game.css';
 import backend from '../backend';
 
@@ -85,15 +84,15 @@ class Game extends Component {
         return (
             <body>
                 <Container className="wrapper">
-                  
-                        <h1 id="time-left">{this.state.timeLeft}</h1>
-                   
-                  
-                        <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
-                    
-                   
-                        <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
-                
+
+                    <h1 id="time-left">{this.state.timeLeft}</h1>
+
+
+                    <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
+
+
+                    <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
+
 
                     <Container className="card">
                         <Row>
@@ -105,10 +104,14 @@ class Game extends Component {
                     </Container>
                     <Row className="round-buttons">
                         <Col>
-                            <Button id='fail-button' className="round float-right" onClick={this.handleFail}><img src={Arrow} /></Button>
+                            <Button id='fail-button' className="round float-right" onClick={this.handleFail}>
+                                <img src={Arrow} alt='Arrow' />
+                            </Button>
                         </Col>
                         <Col>
-                            <Button id='success-button' className="round float-left" onClick={this.handleScore}><img src={CheckMark} /></Button>
+                            <Button id='success-button' className="round float-left" onClick={this.handleScore}>
+                                <img src={CheckMark} alt='Checkmark' />
+                            </Button>
                         </Col>
                     </Row>
                 </Container>
