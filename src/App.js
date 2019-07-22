@@ -3,10 +3,10 @@ import React from 'react';
 import Game from './Components/Game';
 import AddTeam from './Components/AddTeam';
 import MainMenu from './Components/MainMenu';
-import Scoreboard from './Components/Scoreboard';
 import RoundStart from './Components/RoundStart';
 import Page404 from './Components/Page404';
 import { Route, Switch } from 'react-router';
+import ScoreboardPage from './Components/ScoreboardPage';
 
 function App() {
     return (
@@ -16,7 +16,7 @@ function App() {
                 <Route exact path='/teams' component={AddTeam} />
                 <Route exact path='/ready' component={RoundStart} />
                 <Route exact path='/play' component={Game} />
-                <Route exact path='/score' component={Scoreboard} />
+                <Route exact path='/score' component={ScoreboardPage} />
                 <Route component={Page404} />
             </Switch>
         </div>

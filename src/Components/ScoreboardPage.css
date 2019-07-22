@@ -1,0 +1,10 @@
+#playagain-button {
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
+    display: block;
+    margin: 1.5rem auto;
+}
+
+#scoreboardPage {
+    margin-top: 10rem;
+}
