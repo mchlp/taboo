@@ -13,13 +13,22 @@ export default class RoundStart extends Component {
         }
 
         const teamTurn = backend.getTeamNames()[backend.getCurrentTeam()];
+        
 
         return (
             <Container id="scoreboard-container">
                 <h4 id="start-round-title">Ready to start round?</h4>
                 <h2 id="team-turn-text">It's {teamTurn}'s turn!</h2>
                 <Scoreboard />
-                <Link to='/play'><Button className="turquoise-button" id="ready-button">Ready</Button></Link>
+                
+                {backend.state.teamWon ? 
+                    <Link to='/'>
+                        <Button className="turquoise-button" id="ready-button">Main Menu</Button>
+                    </Link>:
+                    
+                    <Link to='/play'>
+                        <Button className="turquoise-button" id="ready-button">Ready</Button>
+                    </Link>}
             </Container>
         );
     }
