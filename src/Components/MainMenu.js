@@ -7,25 +7,12 @@ import './MainMenu.css';
 class MainMenu extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            promptEvent: null,
-            showInstallBtn: true
-        };
         this.install = this.install.bind(this);
     }
 
-    componentDidMount() {
-        window.addEventListener('beforeinstallprompt', (event) => {
-            this.setState({
-                promptEvent: event,
-                showInstallBtn: true
-            });
-        });
-    }
-
     install() {
-        if (this.state.promptEvent) {
-            this.state.promptEvent.prompt();
+        if (this.props.promptEvent) {
+            this.props.promptEvent.prompt();
         }
     }
 
@@ -39,7 +26,7 @@ class MainMenu extends Component {
                             play taboo
                         </Button>
                     </Link>
-                    <Button hidden={this.state.showInstallBtn} className="turquoise-button" id="install-button">
+                    <Button hidden={this.props.promptEvent} className="turquoise-button" id="install-button">
                         install
                     </Button>
                 </Container>

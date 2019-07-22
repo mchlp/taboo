@@ -4,9 +4,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
+let promptEvent;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    promptEvent = event;
+});
+
 ReactDOM.render(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <App />
+        <App promptEvent={promptEvent} />
     </BrowserRouter>,
     document.getElementById('root'));
 
