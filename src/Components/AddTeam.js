@@ -15,7 +15,7 @@ const teamNamesRendered = []; //rendered name button components
 //default settings
 const defaultTime = 45;
 const defaultPenalty = 0;
-const defaultCapPoints = 1000;
+const defaultCapPoints = 25;
 
 const settings = { time: defaultTime, penalty: defaultPenalty, capPoints: defaultCapPoints };
 

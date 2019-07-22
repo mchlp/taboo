@@ -1,0 +1,15 @@
+#mainmenu {
+    margin-top: 38vh;
+}
+
+#taboo-title {
+    color: white;
+    font-size: 5rem;
+}
+
+#play-button {
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
+    display: block;
+    margin: 1.5rem auto;
+}
