@@ -11,7 +11,10 @@ class MainMenu extends Component {
     }
 
     install() {
+        console.log('clikc1');
         if (this.props.promptEvent) {
+            console.log(this.props.promptEvent);
+            console.log(this.props.prompt);
             this.props.promptEvent.prompt();
         }
     }
@@ -26,7 +29,7 @@ class MainMenu extends Component {
                             play taboo
                         </Button>
                     </Link>
-                    <Button hidden={this.props.promptEvent} className="turquoise-button" id="install-button">
+                    <Button hidden={!this.props.promptEvent} onClick={this.install} className="turquoise-button" id="install-button">
                         install
                     </Button>
                 </Container>
