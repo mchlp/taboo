@@ -85,15 +85,15 @@ class Game extends Component {
         return (
             <body>
                 <Container className="wrapper">
-                    <Row>
-                        <h1>time left: {this.state.timeLeft}</h1>
-                    </Row>
-                    <Row>
-                        <Button onClick={() => { this.props.history.push('/score'); }}>End game</Button>
-                    </Row>
-                    <Row>
-                        <h2>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
-                    </Row>
+                  
+                        <h1 id="time-left">{this.state.timeLeft}</h1>
+                   
+                  
+                        <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
+                    
+                   
+                        <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
+                
 
                     <Container className="card">
                         <Row>
@@ -105,10 +105,10 @@ class Game extends Component {
                     </Container>
                     <Row className="round-buttons">
                         <Col>
-                            <Button variant='warning' className="round float-right" onClick={this.handleFail}><img src={Arrow} /></Button>
+                            <Button id='fail-button' className="round float-right" onClick={this.handleFail}><img src={Arrow} /></Button>
                         </Col>
                         <Col>
-                            <Button variant='success' className="round float-left" onClick={this.handleScore}><img src={CheckMark} /></Button>
+                            <Button id='success-button' className="round float-left" onClick={this.handleScore}><img src={CheckMark} /></Button>
                         </Col>
                     </Row>
                 </Container>
