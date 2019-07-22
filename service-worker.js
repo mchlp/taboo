@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/taboo/precache-manifest.f6d6dfdb4c129afb2ff9eb1837ee898b.js"
+  "/taboo/precache-manifest.f6fe3b193d26560a85b97ea551d4fcb1.js"
 );
 
 self.addEventListener('message', (event) => {
