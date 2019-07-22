@@ -34,7 +34,7 @@ class Game extends Component {
         const wonGame = backend.score();
         if (wonGame) {
             clearInterval(this.state.updateInterval);
-            this.props.history.push('/score');
+            this.props.history.push('/ready');
         }
         this.handleClick();
     }
@@ -69,6 +69,7 @@ class Game extends Component {
                 if (timeLeft <= 0) {
                     clearInterval(updateInterval);
                     backend.endRound();
+                    backend.state.teamWon = true;
                     this.props.history.push('/ready');
                 }
             }, 250);
@@ -86,19 +87,16 @@ class Game extends Component {
             <body>
                 <Container className="wrapper">
                   
-                        <h1 id="time-left">{this.state.timeLeft}</h1>
-                   
-                  
-                        <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
-                    
-                   
-                        <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
-                
+                    <h1 id="time-left">{this.state.timeLeft}</h1>
 
+                    <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
+
+                    <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
+                    
                     <Container className="card">
                         <Row>
                             <Col>
-                                <h1>{this.state.word}</h1>
+                                <h1 id="word">{this.state.word}</h1>
                                 <div className="restricted">{restWords}</div>
                             </Col>
                         </Row>

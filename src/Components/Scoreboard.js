@@ -16,15 +16,13 @@ class Scoreboard extends Component {
         const capPoints = backend.getCapPoints();
         let winningTeam = ''; 
         let winningScore = 0;
-        let teamWon = false;
         const teamData = [];
-        console.log(backend.getNumPlayers());
         for (let i = 0; i < backend.getNumPlayers(); i++) {
             if (backend.getScores()[i] >= winningScore) {
                 winningTeam = backend.getTeamNames()[i];
                 winningScore = backend.getScores()[i];
                 if (winningScore >= capPoints) {
-                    teamWon = true;
+                    backend.state.teamWon = true;
                 }
             }
             teamData.push(
@@ -40,13 +38,11 @@ class Scoreboard extends Component {
             );
         }
 
-        console.log(teamData);
-
         return (
             <Container className="wrapper">
                 <h1 id="scoreboard-title">Scoreboard</h1>
                 <p id="cap-points-text">Cap Points: {capPoints}</p>
-                <h2>{teamWon ? winningTeam + ' won!' : null}</h2>
+                <h2>{backend.state.teamWon ? winningTeam + ' won!' : null}</h2>
 
                 <Row id="column-header-text">
                     <Col> </Col>

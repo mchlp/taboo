@@ -27,6 +27,12 @@
     font-size: 1.25rem;
 }
 
+#winning-text {
+    color: orange;
+    font-size: 2.5rem;
+    font-weight: bold; 
+}
+
 #column-header-text {
     color: turquoise;
 }
