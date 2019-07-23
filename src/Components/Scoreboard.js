@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import backend from '../backend';
 import { withRouter } from 'react-router-dom';
-import {Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Container.css';
 import './Scoreboard.css';
 
@@ -14,7 +14,7 @@ class Scoreboard extends Component {
         }
 
         const capPoints = backend.getCapPoints();
-        let winningTeam = ''; 
+        let winningTeam = '';
         let winningScore = 0;
         const teamData = [];
         for (let i = 0; i < backend.getNumPlayers(); i++) {
@@ -26,8 +26,8 @@ class Scoreboard extends Component {
                 }
             }
             teamData.push(
-                <Row key={ i } className="holder">
-                    <Col><h4 className="scoreboard-text" id="rank-text">{ i + 1 }</h4></Col>
+                <Row key={i} className="holder">
+                    <Col><h4 className="scoreboard-text" id="rank-text">{i + 1}</h4></Col>
                     <Col xs={6}>
                         <h4 className="scoreboard-text">{backend.getTeamNames()[i]}</h4>
                     </Col>
@@ -42,7 +42,7 @@ class Scoreboard extends Component {
             <Container className="wrapper">
                 <h1 id="scoreboard-title">Scoreboard</h1>
                 <p id="cap-points-text">Cap Points: {capPoints}</p>
-                <h2 id="winning-text">{backend.state.teamWon() ? winningTeam + ' won!' : null}</h2>
+                <h2 id="winning-text">{backend.state.teamWon ? winningTeam + ' won!' : null}</h2>
 
                 <Row id="column-header-text">
                     <Col> </Col>

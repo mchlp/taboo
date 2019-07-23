@@ -21,19 +21,17 @@ class MainMenu extends Component {
 
     render() {
         return (
-            <body>
-                <Container id="mainmenu">
-                    <h1 id='taboo-title'>Taboo!</h1>
-                    <Link to="/teams">
-                        <Button className="turquoise-button" id="play-button">
+            <Container id="mainmenu">
+                <h1 id='taboo-title'>Taboo!</h1>
+                <Link to="/teams">
+                    <Button className="turquoise-button" id="play-button">
                             play taboo
-                        </Button>
-                    </Link>
-                    <Button hidden={!this.props.promptEvent} onClick={this.install} className="turquoise-button" id="install-button">
-                        install
                     </Button>
-                </Container>
-            </body>
+                </Link>
+                <Button hidden={!this.props.promptEvent} onClick={this.install} className="turquoise-button" id="install-button">
+                        install
+                </Button>
+            </Container>
         );
     }
 }

@@ -15,7 +15,8 @@ backend.state = {
     pass: [],
     fail: [],
     curTurn: null,
-    roundEndTime: null
+    roundEndTime: null,
+    teamWon: false
 };
 
 /**
@@ -35,7 +36,8 @@ backend.startGame = (roundTime, failPenalty, capPoints, numPlayers) => {
         pass: Array(numPlayers).fill(0),
         fail: Array(numPlayers).fill(0),
         curTurn: 0,
-        roundEndTime: 0
+        roundEndTime: 0,
+        teamWon: false
     };
 };
 
