@@ -154,13 +154,11 @@ class AddTeam extends Component {
             this.setState({ capPoints: value });
             break;
         }
-        console.log(`time ${this.state.time}`);
     }
 
     handleSubmit(event) {
 
         event.preventDefault();
-        console.log('handling submit');
 
         if (this.state.time < 5) this.setState({ timeInvalid: true });
         else this.setState({ timeInvalid: false });
@@ -171,8 +169,10 @@ class AddTeam extends Component {
         if (this.state.capPoints < 1) this.setState({ capPointsInvalid: true });
         else this.setState({ capPointsInvalid: false });
 
+        console.log('teamNames: ' + teamNames.length);
         if (teamNames.length < 2) this.setState({ teamsInvalid: true });
         else this.setState({ teamsInvalid: false });
+        console.log('teamsInvalid state: ' + this.state.teamsInvalid);
 
         if (!this.state.timeInvalid && !this.state.penaltyInvalid
             && !this.state.capPointsInvalid && !this.state.teamsInvalid) {
@@ -186,12 +186,10 @@ class AddTeam extends Component {
             this.props.history.push('/ready');
         }
 
-        console.log(this.state);
     }
     render() {
         return (
             <Container className="wrapper">
-
 
                 <h1 className="title" id="settings-title">Settings</h1>
 
