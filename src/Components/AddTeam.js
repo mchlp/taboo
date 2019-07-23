@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, Row, Container, FormGroup, Col } from 'react-bootstrap';
+import { Button, Form, Row, Container, Col } from 'react-bootstrap';
 import './Container.css';
 import './AddTeam.css';
-import { thisTypeAnnotation } from '@babel/types';
 import backend from '../backend';
-import { Link } from 'react-router-dom';
 
 //AddTeam constants 
 const teamNames = []; //stores submitted names
@@ -143,16 +141,17 @@ class AddTeam extends Component {
         const { name, value } = event.target;
 
         switch (name) {
-        case ('time'):
-            this.setState({ time: value });
-            break;
-
-        case ('penalty'):
-            this.setState({ penalty: value });
-            break;
-        case ('capPoints'):
-            this.setState({ capPoints: value });
-            break;
+            case ('time'):
+                this.setState({ time: value });
+                break;
+            case ('penalty'):
+                this.setState({ penalty: value });
+                break;
+            case ('capPoints'):
+                this.setState({ capPoints: value });
+                break;
+            default:
+                break;
         }
     }
 

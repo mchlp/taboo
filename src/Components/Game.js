@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import './Game.css';
 import backend from '../backend';
 
@@ -103,10 +102,14 @@ class Game extends Component {
                     </Container>
                     <Row className="round-buttons">
                         <Col>
-                            <Button id='fail-button' className="round float-right" onClick={this.handleFail}><img src={Arrow} /></Button>
+                            <Button id='fail-button' className="round float-right" onClick={this.handleFail}>
+                                <img src={Arrow} alt='Arrow' />
+                            </Button>
                         </Col>
                         <Col>
-                            <Button id='success-button' className="round float-left" onClick={this.handleScore}><img src={CheckMark} /></Button>
+                            <Button id='success-button' className="round float-left" onClick={this.handleScore}>
+                                <img src={CheckMark} alt='Checkmark' />
+                            </Button>
                         </Col>
                     </Row>
                 </Container>

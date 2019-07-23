@@ -1,12 +1,26 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Container, Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Container.css';
 import './MainMenu.css';
 
-class MainMenu extends Component{
-    render(){
-        return(
+class MainMenu extends Component {
+    constructor(props) {
+        super(props);
+        this.install = this.install.bind(this);
+    }
+
+    install() {
+        console.log('clikc1');
+        if (this.props.promptEvent) {
+            console.log(this.props.promptEvent);
+            console.log(this.props.prompt);
+            this.props.promptEvent.prompt();
+        }
+    }
+
+    render() {
+        return (
             <body>
                 <Container id="mainmenu">
                     <h1 id='taboo-title'>Taboo!</h1>
@@ -15,6 +29,9 @@ class MainMenu extends Component{
                             play taboo
                         </Button>
                     </Link>
+                    <Button hidden={!this.props.promptEvent} onClick={this.install} className="turquoise-button" id="install-button">
+                        install
+                    </Button>
                 </Container>
             </body>
         );
