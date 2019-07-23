@@ -42,7 +42,7 @@ class Scoreboard extends Component {
             <Container className="wrapper">
                 <h1 id="scoreboard-title">Scoreboard</h1>
                 <p id="cap-points-text">Cap Points: {capPoints}</p>
-                <h2 id="winning-text">{backend.state.teamWon ? winningTeam + ' won!' : null}</h2>
+                <h2 id="winning-text">{backend.state.teamWon() ? winningTeam + ' won!' : null}</h2>
 
                 <Row id="column-header-text">
                     <Col> </Col>
