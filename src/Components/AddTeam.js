@@ -81,13 +81,13 @@ class AddTeamButton extends Component {
 
 
         return (
-            <Container>
+            <Container className="teamnames-container">
                 <div>
                     {teamNamesRendered}
                 </div>
                 <Form onSubmit={this.handleSubmit} noValidate>
                     <Row className='holder'>
-                        <Col xs={8} sm={8}>
+                        <Col xs={6} sm={8}>
                             <Form.Control onChange={this.handleChange}
                                 type="text"
                                 name="name"
@@ -96,7 +96,7 @@ class AddTeamButton extends Component {
                                 placeholder="Team Name">
                             </Form.Control>
                         </Col>
-                        <Col xs={4} sm={4}>
+                        <Col xs={6} sm={4}>
                             <Button className='turquoise-button' type="submit" onClick={this.handleSubmit}>Add Team</Button>
                         </Col>
                     </Row>

@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './Scoreboard.css';
 
-let header;
-
 export default class RoundStart extends Component {
     constructor(props){
         super(props);
@@ -16,9 +14,9 @@ export default class RoundStart extends Component {
     componentDidMount(){
         console.log('roundstart was mounted');
         if(backend.state.teamWon)
-            {   console.log('they won!');
-                this.setState({showTop: false});
-            }
+        {   console.log('they won!');
+            this.setState({showTop: false});
+        }
         else this.setState({showTop: true});
     }
     componentWillUnmount(){
