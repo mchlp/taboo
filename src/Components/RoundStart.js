@@ -11,24 +11,11 @@ export default class RoundStart extends Component {
         super(props);
         this.state = { showTop: true };
     }
-<<<<<<< HEAD
-    componentDidMount(){
-        console.log('roundstart was mounted');
-        if(backend.state.teamWon)
-        {   console.log('they won!');
-            this.setState({showTop: false});
-        }
-        else this.setState({showTop: true});
-    }
-    componentWillUnmount(){
-        console.log('unmounted');
-=======
     componentDidMount() {
         if (backend.state.teamWon) {
             this.setState({ showTop: false });
         }
         else this.setState({ showTop: true });
->>>>>>> 77480cde7133f9be132d9885d8f06b053635fbbf
     }
 
     render() {
