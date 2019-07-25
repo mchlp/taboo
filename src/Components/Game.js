@@ -45,8 +45,6 @@ class Game extends Component {
 
     componentDidMount() {
 
-        console.log(backend.getTeamNames());
-
         if (backend.getNumPlayers() === 0) {
             this.props.history.push('/teams');
         }
@@ -68,7 +66,6 @@ class Game extends Component {
                 if (timeLeft <= 0) {
                     clearInterval(updateInterval);
                     backend.endRound();
-                    backend.state.teamWon = true;
                     this.props.history.push('/ready');
                 }
             }, 250);
@@ -83,37 +80,35 @@ class Game extends Component {
             restWords.push(<li key={w}>{w}</li>);
 
         return (
-            <body>
-                <Container className="wrapper">
-                  
-                    <h1 id="time-left">{this.state.timeLeft}</h1>
+            <Container className="wrapper">
 
-                    <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
+                <h1 id="time-left">{this.state.timeLeft}</h1>
 
-                    <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
-                    
-                    <Container className="card">
-                        <Row>
-                            <Col>
-                                <h1 id="word">{this.state.word}</h1>
-                                <div className="restricted">{restWords}</div>
-                            </Col>
-                        </Row>
-                    </Container>
-                    <Row className="round-buttons">
+                <Button id='end-game-button' className='turquoise-button' onClick={() => { this.props.history.push('/score'); }}>End game</Button>
+
+                <h2 id='team-text'>It is team {backend.getTeamNames()[backend.getCurrentTeam()]}'s turn</h2>
+
+                <Container className="card">
+                    <Row>
                         <Col>
-                            <Button id='fail-button' className="round float-right" onClick={this.handleFail}>
-                                <img src={Arrow} alt='Arrow' />
-                            </Button>
-                        </Col>
-                        <Col>
-                            <Button id='success-button' className="round float-left" onClick={this.handleScore}>
-                                <img src={CheckMark} alt='Checkmark' />
-                            </Button>
+                            <h1 id="word">{this.state.word}</h1>
+                            <div className="restricted">{restWords}</div>
                         </Col>
                     </Row>
                 </Container>
-            </body >
+                <Row className="round-buttons">
+                    <Col>
+                        <Button id='fail-button' className="round float-right" onClick={this.handleFail}>
+                            <img src={Arrow} alt='Arrow' />
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button id='success-button' className="round float-left" onClick={this.handleScore}>
+                            <img src={CheckMark} alt='Checkmark' />
+                        </Button>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }

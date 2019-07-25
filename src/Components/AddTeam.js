@@ -70,7 +70,7 @@ class AddTeamButton extends Component {
         if (!teamNames.includes(this.state.name) && !(this.state.name === '')) {
             teamNamesRendered.push(
                 <Row className='holder justiy-content-md-center'
-                    onClick={this.handleDeleteTeam}>
+                    onClick={this.handleDeleteTeam} key={this.state.name}>
                     <h4 className='scoreboard-text'>
                         {this.state.name}
                     </h4>
@@ -103,7 +103,7 @@ class AddTeamButton extends Component {
                 </Form>
                 {this.state.showNoName ? <p className="error" >Please enter a name</p> : null}
                 {this.state.showNameTaken ? <p className="error">Name is taken. Please enter a different name.</p> : null}
-                {this.state.teamsInvalid ? <p className="error">Please add more teams.</p> : null}
+                {this.props.teamsInvalid ? <p className="error">Please add more teams.</p> : null}
             </Container>
 
         );
@@ -159,22 +159,22 @@ class AddTeam extends Component {
 
         event.preventDefault();
 
-        if (this.state.time < 5) this.setState({ timeInvalid: true });
-        else this.setState({ timeInvalid: false });
+        let timeInvalid, penaltyInvalid, capPointsInvalid, teamsInvalid;
 
-        if (this.state.penalty < 0) this.setState({ penaltyInvalid: true });
-        else this.setState({ penaltyInvalid: false });
+        if (this.state.time < 5) timeInvalid = true;
+        else timeInvalid = false;
 
-        if (this.state.capPoints < 1) this.setState({ capPointsInvalid: true });
-        else this.setState({ capPointsInvalid: false });
+        if (this.state.penalty < 0) penaltyInvalid = true;
+        else penaltyInvalid = false;
 
-        console.log('teamNames: ' + teamNames.length);
-        if (teamNames.length < 2) this.setState({ teamsInvalid: true });
-        else this.setState({ teamsInvalid: false });
-        console.log('teamsInvalid state: ' + this.state.teamsInvalid);
+        if (this.state.capPoints < 1) capPointsInvalid = true;
+        else capPointsInvalid = false;
 
-        if (!this.state.timeInvalid && !this.state.penaltyInvalid
-            && !this.state.capPointsInvalid && !this.state.teamsInvalid) {
+        if (teamNames.length < 1) teamsInvalid = true;
+        else teamsInvalid = false;
+
+        if (!timeInvalid && !penaltyInvalid
+            && !capPointsInvalid && !teamsInvalid) {
             settings.time = this.state.time;
             settings.penalty = this.state.penalty;
             settings.capPoints = this.state.capPoints;
@@ -184,6 +184,13 @@ class AddTeam extends Component {
 
             this.props.history.push('/ready');
         }
+
+        this.setState({
+            timeInvalid,
+            penaltyInvalid,
+            capPointsInvalid,
+            teamsInvalid
+        });
 
     }
     render() {
@@ -256,7 +263,7 @@ class AddTeam extends Component {
 
                     <Container id='addteam-container'>
                         <h1 className="title" id="team-title">Teams!</h1>
-                        <AddTeamButton />
+                        <AddTeamButton teamsInvalid={this.state.teamsInvalid}/>
                     </Container>
 
                     <Button className='turquoise-button' id='submit-button' type="submit">
