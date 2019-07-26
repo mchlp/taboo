@@ -211,6 +211,7 @@ class AddTeam extends Component {
                                 name="time"
                                 id="time"
                                 defaultValue={defaultTime}
+                                min={0}
                                 noValidate>
                             </Form.Control>
                         </Col>
@@ -233,6 +234,7 @@ class AddTeam extends Component {
                                 name="penalty"
                                 id="penalty"
                                 defaultValue={defaultPenalty}
+                                min={0}
                                 noValidate>
                             </Form.Control>
                         </Col>
@@ -252,6 +254,7 @@ class AddTeam extends Component {
                                 name="capPoints"
                                 id="capPoints"
                                 defaultValue={defaultCapPoints}
+                                min={0}
                                 noValidate>
                             </Form.Control>
                         </Col>
